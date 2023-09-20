@@ -1,38 +1,11 @@
 const express = require("express");  
 const bodyParser = require("body-parser");
-const ejs = require('ejs');
 
 const app = express();
-
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true})); 
   
-
-
-app.get('/', (req, res) => {
-    res.render('index', {
-        pageTitle: 'My EJS App',
-        appName: 'EJS Demo'
-    });
-});
-
-// Define a route for the homepage
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-// Define routes for other pages
-app.get('/about', (req, res) => {
-    res.render('about');
-});
-
-// Add more routes for other pages as needed
-app.get('/upload', (req, res) => {
-    res.render('upload');
-});
 
 
 app.get("/", function(req,res){
@@ -43,6 +16,9 @@ app.get("/signup", function(req,res){
     res.sendFile(__dirname+"/signup.html");
 });
 
+app.get("/login", function(req,res){
+    res.sendFile(__dirname+"/login.html");
+});
 app.post("/",function(req, res){
 
     var firstName=req.body.fname;
